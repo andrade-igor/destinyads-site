@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Destiny Ads — Gestão Estratégica de Tráfego Pago</title>
+  <meta name="description" content="Destiny Ads (Aiela Marketing de Performance Ltda) — Gestão estratégica de tráfego pago com Meta Ads, Google Ads e TikTok Ads para empresas que querem escalar resultados.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --destiny-green: #62D4B9;
+      --destiny-dark: #0D1B2A;
+      --destiny-mid: #1B2D45;
+      --destiny-light: #8EECD8;
+      --text-primary: #F0F4F8;
+      --text-secondary: #A0AEC0;
+      --accent: #62D4B9;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: var(--destiny-dark);
+      color: var(--text-primary);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Grain overlay */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* Nav */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 1.25rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      backdrop-filter: blur(20px);
+      background: rgba(13, 27, 42, 0.85);
+      border-bottom: 1px solid rgba(98, 212, 185, 0.08);
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--text-primary);
+    }
+
+    .logo span { color: var(--destiny-green); }
+
+    nav a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    nav a:hover { color: var(--destiny-green); }
+
+    /* Hero */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 6rem 2rem 4rem;
+      position: relative;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -20%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 800px;
+      height: 800px;
+      background: radial-gradient(circle, rgba(98, 212, 185, 0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1.25rem;
+      border-radius: 100px;
+      background: rgba(98, 212, 185, 0.08);
+      border: 1px solid rgba(98, 212, 185, 0.15);
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--destiny-green);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 2rem;
+      animation: fadeInUp 0.8s ease both;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+      max-width: 800px;
+      margin-bottom: 1.5rem;
+      animation: fadeInUp 0.8s ease 0.1s both;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      background: linear-gradient(135deg, var(--destiny-green), var(--destiny-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      font-size: 1.15rem;
+      color: var(--text-secondary);
+      max-width: 560px;
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+      animation: fadeInUp 0.8s ease 0.2s both;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1rem 2rem;
+      background: var(--destiny-green);
+      color: var(--destiny-dark);
+      font-weight: 700;
+      font-size: 0.95rem;
+      border-radius: 12px;
+      text-decoration: none;
+      transition: all 0.3s;
+      animation: fadeInUp 0.8s ease 0.3s both;
+    }
+
+    .hero-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(98, 212, 185, 0.3);
+    }
+
+    .hero-cta svg { transition: transform 0.3s; }
+    .hero-cta:hover svg { transform: translateX(4px); }
+
+    /* Services */
+    .services {
+      padding: 6rem 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--destiny-green);
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 3rem;
+      line-height: 1.15;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .service-card {
+      padding: 2rem;
+      background: rgba(27, 45, 69, 0.4);
+      border: 1px solid rgba(98, 212, 185, 0.06);
+      border-radius: 16px;
+      transition: all 0.4s;
+    }
+
+    .service-card:hover {
+      border-color: rgba(98, 212, 185, 0.2);
+      transform: translateY(-4px);
+      background: rgba(27, 45, 69, 0.6);
+    }
+
+    .service-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: rgba(98, 212, 185, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.25rem;
+      font-size: 1.5rem;
+    }
+
+    .service-card h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.02em;
+    }
+
+    .service-card p {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+
+    /* Company info */
+    .company {
+      padding: 4rem 2rem 6rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .company-card {
+      padding: 3rem;
+      background: rgba(27, 45, 69, 0.3);
+      border: 1px solid rgba(98, 212, 185, 0.08);
+      border-radius: 20px;
+    }
+
+    .company-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .company-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .company-item .label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--destiny-green);
+    }
+
+    .company-item .value {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    /* Footer */
+    footer {
+      padding: 2rem;
+      text-align: center;
+      border-top: 1px solid rgba(98, 212, 185, 0.06);
+      color: var(--text-secondary);
+      font-size: 0.8rem;
+    }
+
+    footer a {
+      color: var(--destiny-green);
+      text-decoration: none;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+      nav { padding: 1rem; }
+      .hero { padding: 5rem 1.25rem 3rem; }
+      .services, .company { padding-left: 1.25rem; padding-right: 1.25rem; }
+      .company-card { padding: 2rem 1.5rem; }
+      .services-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <img src="logo.png" alt="Destiny Ads" style="height: 36px; width: auto;">
+    <a href="https://wa.me/5597991535357" target="_blank">Fale conosco</a>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-badge">Gestão Estratégica de Tráfego Pago</div>
+    <h1>Resultados reais com <em>mídia paga</em> de alta performance</h1>
+    <p>Planejamento, execução e otimização de campanhas em Meta Ads, Google Ads e TikTok Ads para empresas que querem escalar com previsibilidade.</p>
+    <a class="hero-cta" href="https://wa.me/5597991535357" target="_blank">
+      Falar com especialista
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </section>
+
+  <section class="services">
+    <div class="section-label">Serviços</div>
+    <h2 class="section-title">O que fazemos</h2>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">📊</div>
+        <h3>Meta Ads</h3>
+        <p>Campanhas estratégicas no Facebook e Instagram com otimização contínua de criativos, públicos e orçamentos.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🔍</div>
+        <h3>Google Ads</h3>
+        <p>Search, Display e YouTube Ads focados em captura de demanda e geração de leads qualificados.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🎯</div>
+        <h3>TikTok Ads</h3>
+        <p>Campanhas de awareness e conversão na plataforma que mais cresce, com criativos nativos e segmentação avançada.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="company" id="empresa">
+    <div class="company-card">
+      <div class="section-label">Dados da empresa</div>
+      <h2 class="section-title">Destiny Ads</h2>
+      <div class="company-grid">
+        <div class="company-item">
+          <span class="label">Razão Social</span>
+          <span class="value">Aiela Marketing de Performance Ltda</span>
+        </div>
+        <div class="company-item">
+          <span class="label">CNPJ</span>
+          <span class="value">46.854.870/0001-29</span>
+        </div>
+        <div class="company-item">
+          <span class="label">Nome Fantasia</span>
+          <span class="value">Destiny Ads</span>
+        </div>
+        <div class="company-item">
+          <span class="label">E-mail</span>
+          <span class="value">contato@destinyads.com.br</span>
+        </div>
+        <div class="company-item">
+          <span class="label">Telefone</span>
+          <span class="value">+55 (97) 99153-5357</span>
+        </div>
+        <div class="company-item">
+          <span class="label">Localização</span>
+          <span class="value">Manaus, Amazonas — Brasil</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Destiny Ads (Aiela Marketing de Performance Ltda) — CNPJ 46.854.870/0001-29</p>
+    <p style="margin-top: 0.5rem;">
+      <a href="https://wa.me/5597991535357">WhatsApp</a> &middot;
+      <a href="https://instagram.com/destinyads_">Instagram</a>
+    </p>
+  </footer>
+
+</body>
+</html>
