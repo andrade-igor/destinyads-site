@@ -105,22 +105,4 @@
     });
   }
 
-  const rail = document.getElementById('case-rail');
-  const railProgress = document.getElementById('rail-progress');
-  const moveRail = (direction) => {
-    const card = rail.querySelector('.case-card');
-    const amount = card ? card.getBoundingClientRect().width + 16 : rail.clientWidth * 0.8;
-    rail.scrollBy({ left: amount * direction, behavior: reducedMotion ? 'auto' : 'smooth' });
-  };
-  document.getElementById('cases-prev').addEventListener('click', () => moveRail(-1));
-  document.getElementById('cases-next').addEventListener('click', () => moveRail(1));
-  const updateRailProgress = () => {
-    const max = rail.scrollWidth - rail.clientWidth;
-    const ratio = max > 0 ? rail.scrollLeft / max : 0;
-    const visible = rail.clientWidth / rail.scrollWidth;
-    railProgress.style.width = `${clamp((ratio + visible) * 100, visible * 100, 100)}%`;
-  };
-  updateRailProgress();
-  rail.addEventListener('scroll', updateRailProgress, { passive: true });
-  window.addEventListener('resize', updateRailProgress, { passive: true });
 })();
