@@ -1,391 +1,203 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Destiny Ads — Gestão Estratégica de Tráfego Pago</title>
-  <meta name="description" content="Destiny Ads (Aiela Marketing de Performance Ltda) — Gestão estratégica de tráfego pago com Meta Ads, Google Ads e TikTok Ads para empresas que querem escalar resultados.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
-    :root {
-      --destiny-green: #62D4B9;
-      --destiny-dark: #0D1B2A;
-      --destiny-mid: #1B2D45;
-      --destiny-light: #8EECD8;
-      --text-primary: #F0F4F8;
-      --text-secondary: #A0AEC0;
-      --accent: #62D4B9;
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      background: var(--destiny-dark);
-      color: var(--text-primary);
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
-
-    /* Grain overlay */
-    body::after {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 9999;
-    }
-
-    /* Nav */
-    nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 100;
-      padding: 1.25rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      backdrop-filter: blur(20px);
-      background: rgba(13, 27, 42, 0.85);
-      border-bottom: 1px solid rgba(98, 212, 185, 0.08);
-    }
-
-    .logo {
-      font-size: 1.5rem;
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      color: var(--text-primary);
-    }
-
-    .logo span { color: var(--destiny-green); }
-
-    nav a {
-      color: var(--text-secondary);
-      text-decoration: none;
-      font-size: 0.875rem;
-      font-weight: 500;
-      transition: color 0.3s;
-    }
-
-    nav a:hover { color: var(--destiny-green); }
-
-    /* Hero */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 6rem 2rem 4rem;
-      position: relative;
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: -20%;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 800px;
-      height: 800px;
-      background: radial-gradient(circle, rgba(98, 212, 185, 0.12) 0%, transparent 70%);
-      pointer-events: none;
-    }
-
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.5rem 1.25rem;
-      border-radius: 100px;
-      background: rgba(98, 212, 185, 0.08);
-      border: 1px solid rgba(98, 212, 185, 0.15);
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: var(--destiny-green);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-bottom: 2rem;
-      animation: fadeInUp 0.8s ease both;
-    }
-
-    .hero h1 {
-      font-size: clamp(2.5rem, 6vw, 4.5rem);
-      font-weight: 800;
-      line-height: 1.05;
-      letter-spacing: -0.04em;
-      max-width: 800px;
-      margin-bottom: 1.5rem;
-      animation: fadeInUp 0.8s ease 0.1s both;
-    }
-
-    .hero h1 em {
-      font-style: normal;
-      background: linear-gradient(135deg, var(--destiny-green), var(--destiny-light));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .hero p {
-      font-size: 1.15rem;
-      color: var(--text-secondary);
-      max-width: 560px;
-      line-height: 1.7;
-      margin-bottom: 2.5rem;
-      animation: fadeInUp 0.8s ease 0.2s both;
-    }
-
-    .hero-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.75rem;
-      padding: 1rem 2rem;
-      background: var(--destiny-green);
-      color: var(--destiny-dark);
-      font-weight: 700;
-      font-size: 0.95rem;
-      border-radius: 12px;
-      text-decoration: none;
-      transition: all 0.3s;
-      animation: fadeInUp 0.8s ease 0.3s both;
-    }
-
-    .hero-cta:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 30px rgba(98, 212, 185, 0.3);
-    }
-
-    .hero-cta svg { transition: transform 0.3s; }
-    .hero-cta:hover svg { transform: translateX(4px); }
-
-    /* Services */
-    .services {
-      padding: 6rem 2rem;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    .section-label {
-      font-size: 0.75rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      color: var(--destiny-green);
-      margin-bottom: 1rem;
-    }
-
-    .section-title {
-      font-size: clamp(1.8rem, 4vw, 2.5rem);
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      margin-bottom: 3rem;
-      line-height: 1.15;
-    }
-
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .service-card {
-      padding: 2rem;
-      background: rgba(27, 45, 69, 0.4);
-      border: 1px solid rgba(98, 212, 185, 0.06);
-      border-radius: 16px;
-      transition: all 0.4s;
-    }
-
-    .service-card:hover {
-      border-color: rgba(98, 212, 185, 0.2);
-      transform: translateY(-4px);
-      background: rgba(27, 45, 69, 0.6);
-    }
-
-    .service-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 12px;
-      background: rgba(98, 212, 185, 0.1);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 1.25rem;
-      font-size: 1.5rem;
-    }
-
-    .service-card h3 {
-      font-size: 1.15rem;
-      font-weight: 700;
-      margin-bottom: 0.75rem;
-      letter-spacing: -0.02em;
-    }
-
-    .service-card p {
-      font-size: 0.9rem;
-      color: var(--text-secondary);
-      line-height: 1.65;
-    }
-
-    /* Company info */
-    .company {
-      padding: 4rem 2rem 6rem;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    .company-card {
-      padding: 3rem;
-      background: rgba(27, 45, 69, 0.3);
-      border: 1px solid rgba(98, 212, 185, 0.08);
-      border-radius: 20px;
-    }
-
-    .company-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-      margin-top: 2rem;
-    }
-
-    .company-item {
-      display: flex;
-      flex-direction: column;
-      gap: 0.35rem;
-    }
-
-    .company-item .label {
-      font-size: 0.7rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      color: var(--destiny-green);
-    }
-
-    .company-item .value {
-      font-size: 0.95rem;
-      color: var(--text-secondary);
-      line-height: 1.5;
-    }
-
-    /* Footer */
-    footer {
-      padding: 2rem;
-      text-align: center;
-      border-top: 1px solid rgba(98, 212, 185, 0.06);
-      color: var(--text-secondary);
-      font-size: 0.8rem;
-    }
-
-    footer a {
-      color: var(--destiny-green);
-      text-decoration: none;
-    }
-
-    /* Animations */
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(24px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* Responsive */
-    @media (max-width: 640px) {
-      nav { padding: 1rem; }
-      .hero { padding: 5rem 1.25rem 3rem; }
-      .services, .company { padding-left: 1.25rem; padding-right: 1.25rem; }
-      .company-card { padding: 2rem 1.5rem; }
-      .services-grid { grid-template-columns: 1fr; }
-    }
-  </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Igor Andrade — Destiny Ads</title>
+  <meta name="description" content="Fundador da Destiny Ads. Estratégia, performance e automação com IA para empresas que precisam de demanda e clareza sobre o que gera resultado.">
+  <meta name="theme-color" content="#071a20">
+  <link rel="canonical" href="https://destinyads.com.br/">
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="preload" href="assets/Arboria-Book.otf" as="font" type="font/otf" crossorigin>
+  <link rel="preload" href="assets/Arboria-Bold.otf" as="font" type="font/otf" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:url" content="https://destinyads.com.br/">
+  <meta property="og:title" content="Igor Andrade — Destiny Ads">
+  <meta property="og:description" content="Mídia, dados e IA transformados em crescimento mensurável.">
+  <meta property="og:image" content="https://destinyads.com.br/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Igor Andrade — Destiny Ads">
+  <meta name="twitter:description" content="Mídia, dados e IA transformados em crescimento mensurável.">
+  <meta name="twitter:image" content="https://destinyads.com.br/og.png">
 </head>
 <body>
+  <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
 
-  <nav>
-    <img src="logo.png" alt="Destiny Ads" style="height: 36px; width: auto;">
-    <a href="https://wa.me/5597991535357" target="_blank">Fale conosco</a>
-  </nav>
-
-  <section class="hero">
-    <div class="hero-badge">Gestão Estratégica de Tráfego Pago</div>
-    <h1>Resultados reais com <em>mídia paga</em> de alta performance</h1>
-    <p>Planejamento, execução e otimização de campanhas em Meta Ads, Google Ads e TikTok Ads para empresas que querem escalar com previsibilidade.</p>
-    <a class="hero-cta" href="https://wa.me/5597991535357" target="_blank">
-      Falar com especialista
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+  <header class="topbar">
+    <a class="brand" href="#inicio" aria-label="Destiny Ads — início">
+      <img src="logo.png" alt="Destiny Ads" width="1920" height="600">
     </a>
-  </section>
+    <nav aria-label="Navegação principal">
+      <a href="#atuacao">Atuação</a>
+      <a href="#metodo">Método</a>
+      <a href="#resultados">Resultados</a>
+      <a href="#sobre">Sobre</a>
+    </nav>
+    <a class="nav-cta" href="https://wa.me/5597991535357?text=Oi%2C%20Igor.%20Vim%20pelo%20seu%20site%20e%20quero%20conversar." target="_blank" rel="noopener">Conversar <span aria-hidden="true">↗</span></a>
+  </header>
 
-  <section class="services">
-    <div class="section-label">Serviços</div>
-    <h2 class="section-title">O que fazemos</h2>
-    <div class="services-grid">
-      <div class="service-card">
-        <div class="service-icon">📊</div>
-        <h3>Meta Ads</h3>
-        <p>Campanhas estratégicas no Facebook e Instagram com otimização contínua de criativos, públicos e orçamentos.</p>
+  <main id="conteudo">
+    <section class="hero" id="inicio" aria-labelledby="hero-title">
+      <div class="hero-noise" aria-hidden="true"></div>
+      <div class="hero-copy">
+        <p class="eyebrow">Igor Andrade · Fundador da Destiny Ads</p>
+        <h1 id="hero-title">Mídia, dados e IA.<br><span>Crescimento mensurável.</span></h1>
+        <p class="hero-text">Eu construo operações de aquisição que conectam estratégia, performance e automação para empresas que precisam de demanda — e de clareza sobre o que realmente gera resultado.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="https://wa.me/5597991535357?text=Oi%2C%20Igor.%20Vim%20pelo%20seu%20site%20e%20quero%20conversar." target="_blank" rel="noopener">Falar com o Igor <span aria-hidden="true">↗</span></a>
+          <a class="button button-quiet" href="#resultados">Ver resultados</a>
+        </div>
       </div>
-      <div class="service-card">
-        <div class="service-icon">🔍</div>
-        <h3>Google Ads</h3>
-        <p>Search, Display e YouTube Ads focados em captura de demanda e geração de leads qualificados.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">🎯</div>
-        <h3>TikTok Ads</h3>
-        <p>Campanhas de awareness e conversão na plataforma que mais cresce, com criativos nativos e segmentação avançada.</p>
-      </div>
-    </div>
-  </section>
 
-  <section class="company" id="empresa">
-    <div class="company-card">
-      <div class="section-label">Dados da empresa</div>
-      <h2 class="section-title">Destiny Ads</h2>
-      <div class="company-grid">
-        <div class="company-item">
-          <span class="label">Razão Social</span>
-          <span class="value">Aiela Marketing de Performance Ltda</span>
+      <div class="hero-aside" aria-label="Resumo profissional">
+        <div class="signal-card">
+          <span class="signal-dot" aria-hidden="true"></span>
+          <p>Estratégia antes da plataforma.</p>
         </div>
-        <div class="company-item">
-          <span class="label">CNPJ</span>
-          <span class="value">46.854.870/0001-29</span>
+        <div class="hero-metric">
+          <strong>+5</strong>
+          <span>anos em<br>performance</span>
         </div>
-        <div class="company-item">
-          <span class="label">Nome Fantasia</span>
-          <span class="value">Destiny Ads</span>
-        </div>
-        <div class="company-item">
-          <span class="label">E-mail</span>
-          <span class="value">contato@destinyads.com.br</span>
-        </div>
-        <div class="company-item">
-          <span class="label">Telefone</span>
-          <span class="value">+55 (97) 99153-5357</span>
-        </div>
-        <div class="company-item">
-          <span class="label">Localização</span>
-          <span class="value">Vila Velha, Espírito Santo — Brasil</span>
+        <div class="hero-metric metric-bottom">
+          <strong>+R$20M</strong>
+          <span>em resultados<br>ao longo da trajetória</span>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+
+    <section class="marquee" aria-label="Áreas de especialidade">
+      <div>
+        <span>Meta Ads</span><i aria-hidden="true"></i>
+        <span>Google Ads</span><i aria-hidden="true"></i>
+        <span>TikTok Ads</span><i aria-hidden="true"></i>
+        <span>Mensuração</span><i aria-hidden="true"></i>
+        <span>WhatsApp & CRM</span><i aria-hidden="true"></i>
+        <span>Automação com IA</span>
+      </div>
+    </section>
+
+    <section class="section services" id="atuacao" aria-labelledby="services-title">
+      <div class="section-intro">
+        <p class="eyebrow">O que eu resolvo</p>
+        <h2 id="services-title">Aquisição não é uma campanha.<br>É um sistema.</h2>
+        <p>Meu trabalho começa no negócio, passa pelos canais e termina em uma leitura clara do que merece ser repetido.</p>
+      </div>
+
+      <div class="service-list">
+        <article class="service-row">
+          <span class="service-number">01</span>
+          <h3>Estratégia de aquisição</h3>
+          <p>Oferta, público, jornada, canais e metas organizados em uma arquitetura que o time consegue executar.</p>
+        </article>
+        <article class="service-row">
+          <span class="service-number">02</span>
+          <h3>Mídia & performance</h3>
+          <p>Planejamento e gestão em Meta, Google e TikTok, com otimização guiada por evidência — não por vaidade.</p>
+        </article>
+        <article class="service-row">
+          <span class="service-number">03</span>
+          <h3>Dados & automação</h3>
+          <p>Mensuração, WhatsApp, CRM e agentes de IA conectados para transformar operação em aprendizado contínuo.</p>
+        </article>
+      </div>
+
+      <div class="fit-note">
+        <span>Para quem faz sentido</span>
+        <p>Empresas com uma oferta real e capacidade de atender, mas que precisam gerar demanda com mais previsibilidade, mensuração e inteligência.</p>
+      </div>
+    </section>
+
+    <section class="section method" id="metodo" aria-labelledby="method-title">
+      <div class="method-heading">
+        <p class="eyebrow">Como eu trabalho</p>
+        <h2 id="method-title">Clareza para decidir.<br>Disciplina para executar.</h2>
+      </div>
+      <div class="method-steps">
+        <article>
+          <span>01 / Diagnóstico</span>
+          <h3>Entender o negócio antes de abrir o gerenciador.</h3>
+          <p>Oferta, histórico, capacidade comercial, dados disponíveis e gargalo real entram na mesa.</p>
+        </article>
+        <article>
+          <span>02 / Arquitetura</span>
+          <h3>Dar uma função clara para cada canal e etapa.</h3>
+          <p>A estratégia define como mensagem, mídia, página e atendimento trabalham como um único sistema.</p>
+        </article>
+        <article>
+          <span>03 / Aprendizado</span>
+          <h3>Testar, medir, documentar e transformar acerto em processo.</h3>
+          <p>A Eva, sistema de inteligência da Destiny, ajuda a monitorar a operação sem substituir o julgamento estratégico.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section results" id="resultados" aria-labelledby="results-title">
+      <div class="section-intro results-intro">
+        <p class="eyebrow">Provas selecionadas</p>
+        <h2 id="results-title">Números fortes.<br>Com contexto.</h2>
+        <p>Sem somar métricas diferentes, inflar atribuição ou chamar faturamento total de resultado dos anúncios.</p>
+      </div>
+
+      <div class="case-grid">
+        <article class="case case-featured">
+          <div class="case-topline"><span>Eventos</span><span>Receita atribuída</span></div>
+          <strong>R$224 mil</strong>
+          <h3>Sintonia de Mulher 2026</h3>
+          <p>407 vendas atribuídas à Meta e ROAS de 6,23x em uma operação de 56 dias.</p>
+        </article>
+        <article class="case">
+          <div class="case-topline"><span>Automotivo</span><span>Demanda recorrente</span></div>
+          <strong>10,9 mil</strong>
+          <h3>Leads em dez meses</h3>
+          <p>Operação contínua para um grupo multimarca, com governança por unidade e realocação de orçamento.</p>
+        </article>
+        <article class="case">
+          <div class="case-topline"><span>Hotelaria</span><span>WhatsApp</span></div>
+          <strong>44×</strong>
+          <h3>Mais conversas por mês</h3>
+          <p>Reestruturação que levou a média mensal de 53 para 2.329 conversas comerciais.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section about" id="sobre" aria-labelledby="about-title">
+      <div class="portrait-wrap">
+        <img src="assets/igor-andrade.jpg" alt="Igor Andrade, fundador da Destiny Ads" width="300" height="300" loading="lazy">
+        <span>Manaus · AM</span>
+      </div>
+      <div class="about-copy">
+        <p class="eyebrow">Quem está por trás</p>
+        <h2 id="about-title">Igor Andrade</h2>
+        <p class="about-lead">Fundador da Destiny Ads e arquiteto de operações de aquisição.</p>
+        <p>Entrei no mercado como gestor de tráfego e evoluí para desenhar sistemas que unem mídia, mensuração, atendimento e automação. Passei mais de quatro anos em agência, atendi operações de eventos, varejo, hotelaria, automotivo e serviços locais, e hoje concentro esse repertório na Destiny.</p>
+        <p>Também fui palestrante no Amazon IA Summit em 2025 e 2026, levando para o palco uma visão prática: IA só cria vantagem quando melhora a qualidade da decisão e da execução.</p>
+        <div class="social-links">
+          <a href="https://instagram.com/andrade.igor_" target="_blank" rel="noopener">Instagram <span aria-hidden="true">↗</span></a>
+          <a href="https://x.com/o_igorsouza" target="_blank" rel="noopener">X / Twitter <span aria-hidden="true">↗</span></a>
+          <a href="https://github.com/andrade-igor" target="_blank" rel="noopener">GitHub <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section" aria-labelledby="cta-title">
+      <div>
+        <p class="eyebrow">Próximo passo</p>
+        <h2 id="cta-title">Se existe uma boa oferta, existe um sistema melhor para levá-la ao mercado.</h2>
+      </div>
+      <a class="button button-primary button-large" href="https://wa.me/5597991535357?text=Oi%2C%20Igor.%20Vim%20pelo%20seu%20site%20e%20quero%20conversar." target="_blank" rel="noopener">Vamos conversar <span aria-hidden="true">↗</span></a>
+    </section>
+  </main>
 
   <footer>
-    <p>&copy; 2025 Destiny Ads (Aiela Marketing de Performance Ltda) — CNPJ 46.854.870/0001-29</p>
-    <p style="margin-top: 0.5rem;">
-      <a href="https://wa.me/5597991535357">WhatsApp</a> &middot;
-      <a href="https://instagram.com/destinyads_">Instagram</a>
-    </p>
+    <a class="footer-brand" href="#inicio"><img src="logo.png" alt="Destiny Ads" width="1920" height="600"></a>
+    <p>Aiela Marketing de Performance Ltda · CNPJ 46.854.870/0001-29</p>
+    <p>© <span id="year">2026</span> Destiny Ads</p>
   </footer>
 
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
