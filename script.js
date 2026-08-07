@@ -1,15 +1,19 @@
 (() => {
-  const root = document.documentElement;
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
 
   document.getElementById('year').textContent = new Date().getFullYear();
   requestAnimationFrame(() => document.body.classList.add('is-ready'));
 
-  if (!reducedMotion) {
+  const cursorLight = document.querySelector('.cursor-light');
+  if (!reducedMotion && cursorLight) {
+    let pointerFrame = 0;
     window.addEventListener('pointermove', (event) => {
-      root.style.setProperty('--cursor-x', `${event.clientX}px`);
-      root.style.setProperty('--cursor-y', `${event.clientY}px`);
+      if (pointerFrame) cancelAnimationFrame(pointerFrame);
+      pointerFrame = requestAnimationFrame(() => {
+        cursorLight.style.transform = `translate3d(${event.clientX - 220}px, ${event.clientY - 220}px, 0)`;
+        pointerFrame = 0;
+      });
     }, { passive: true });
   }
 
@@ -26,9 +30,17 @@
     const methodProgress = (window.innerHeight - rect.top) / methodDistance;
     methodMeter.style.transform = `scaleX(${clamp(methodProgress, 0, 1)})`;
   };
+  let scrollFrame = 0;
+  const scheduleScrollState = () => {
+    if (scrollFrame) return;
+    scrollFrame = requestAnimationFrame(() => {
+      updateScrollState();
+      scrollFrame = 0;
+    });
+  };
   updateScrollState();
-  window.addEventListener('scroll', updateScrollState, { passive: true });
-  window.addEventListener('resize', updateScrollState, { passive: true });
+  window.addEventListener('scroll', scheduleScrollState, { passive: true });
+  window.addEventListener('resize', scheduleScrollState, { passive: true });
 
   const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
