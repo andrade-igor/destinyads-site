@@ -79,6 +79,57 @@
     }, { passive: true });
   });
 
+  const caseCarousel = document.querySelector('[data-case-carousel]');
+  if (caseCarousel) {
+    const track = caseCarousel.querySelector('.portfolio-case-grid');
+    const cards = [...track.querySelectorAll('.portfolio-case')];
+    const previous = caseCarousel.querySelector('[data-case-prev]');
+    const next = caseCarousel.querySelector('[data-case-next]');
+    const indexLabel = caseCarousel.querySelector('[data-case-index]');
+    const progress = caseCarousel.querySelector('[data-case-progress]');
+    let carouselFrame = 0;
+
+    const cardStep = () => {
+      const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+      return (cards[0]?.getBoundingClientRect().width || track.clientWidth) + gap;
+    };
+    const currentCard = () => clamp(Math.round(track.scrollLeft / cardStep()), 0, cards.length - 1);
+    const updateCaseCarousel = () => {
+      const index = currentCard();
+      const visibleCards = Math.max(1, Math.round(track.clientWidth / cardStep()));
+      const lastVisible = Math.min(index + visibleCards, cards.length);
+      const firstLabel = String(index + 1).padStart(2, '0');
+      const lastLabel = String(lastVisible).padStart(2, '0');
+      indexLabel.textContent = visibleCards > 1 ? `${firstLabel}–${lastLabel}` : firstLabel;
+      progress.style.transform = `scaleX(${lastVisible / cards.length})`;
+      carouselFrame = 0;
+    };
+    const scheduleCaseUpdate = () => {
+      if (carouselFrame) return;
+      carouselFrame = requestAnimationFrame(updateCaseCarousel);
+    };
+    const goToCase = (direction) => {
+      const maxScroll = track.scrollWidth - track.clientWidth;
+      const atStart = track.scrollLeft <= 2;
+      const atEnd = track.scrollLeft >= maxScroll - 2;
+      let target = track.scrollLeft + direction * cardStep();
+      if (direction > 0 && atEnd) target = 0;
+      if (direction < 0 && atStart) target = maxScroll;
+      track.scrollTo({ left: target, behavior: reducedMotion ? 'auto' : 'smooth' });
+    };
+
+    previous.addEventListener('click', () => goToCase(-1));
+    next.addEventListener('click', () => goToCase(1));
+    track.addEventListener('scroll', scheduleCaseUpdate, { passive: true });
+    track.addEventListener('keydown', (event) => {
+      if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+      event.preventDefault();
+      goToCase(event.key === 'ArrowRight' ? 1 : -1);
+    });
+    window.addEventListener('resize', scheduleCaseUpdate, { passive: true });
+    updateCaseCarousel();
+  }
+
   if (!reducedMotion && window.matchMedia('(pointer: fine)').matches) {
     document.querySelectorAll('[data-tilt]').forEach((card) => {
       card.addEventListener('pointermove', (event) => {

@@ -187,7 +187,16 @@
           <h2 id="cases-title">Cases realizados para<br><em>empresas.</em></h2>
         </header>
 
-        <div class="portfolio-case-grid" aria-label="Cases principais">
+        <div class="case-carousel" data-case-carousel>
+          <div class="case-carousel-toolbar">
+            <p><span data-case-index aria-live="polite">01</span> / 07 <small>Arraste para explorar</small></p>
+            <div class="case-carousel-controls">
+              <button type="button" data-case-prev aria-label="Case anterior">&#8592;</button>
+              <button type="button" data-case-next aria-label="Próximo case">&#8594;</button>
+            </div>
+          </div>
+
+          <div class="portfolio-case-grid" id="case-carousel-track" aria-label="Cases principais" tabindex="0">
           <article class="portfolio-case portfolio-case-sintonia" data-reveal>
             <div class="portfolio-case-top"><span>01 · Evento feminino</span><span class="portfolio-case-pill">Operação completa</span></div>
             <img class="portfolio-case-logo portfolio-logo-sintonia" src="assets/cases/sintonia-de-mulher.png" alt="Sintonia de Mulher" loading="lazy">
@@ -246,6 +255,9 @@
             <p class="portfolio-case-result">donos de mercadinhos, padarias e bares em grupos próprios</p>
             <p class="portfolio-case-detail">Base B2B recorrente · de 460 para quase 3 mil membros</p>
           </article>
+          </div>
+
+          <div class="case-carousel-progress" aria-hidden="true"><i data-case-progress></i></div>
         </div>
 
         <div class="case-section-actions" data-reveal>
