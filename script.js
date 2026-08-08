@@ -118,6 +118,12 @@
     previous.addEventListener('click', () => goToCase(-1));
     next.addEventListener('click', () => goToCase(1));
     track.addEventListener('scroll', scheduleCaseUpdate, { passive: true });
+    track.addEventListener('wheel', (event) => {
+      const delta = Math.abs(event.deltaX) > Math.abs(event.deltaY) ? event.deltaX : event.deltaY;
+      if (!delta) return;
+      event.preventDefault();
+      track.scrollBy({ left: delta, behavior: 'auto' });
+    }, { passive: false });
     track.addEventListener('pointerdown', (event) => {
       if (event.pointerType !== 'mouse' || event.button !== 0) return;
       isDragging = true;
