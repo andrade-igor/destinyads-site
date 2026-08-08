@@ -2,6 +2,22 @@
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
 
+  document.addEventListener('click', (event) => {
+    const whatsappLink = event.target.closest('a[href^="https://wa.me/"]');
+    if (!whatsappLink || typeof window.oaiq !== 'function') return;
+
+    try {
+      window.oaiq(
+        'measure',
+        'custom',
+        { type: 'custom' },
+        { custom_event_name: 'whatsapp_cta_clicked' }
+      );
+    } catch (_) {
+      // Measurement must never interrupt the WhatsApp navigation.
+    }
+  });
+
   document.getElementById('year').textContent = new Date().getFullYear();
   requestAnimationFrame(() => document.body.classList.add('is-ready'));
 
