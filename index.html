@@ -3,6 +3,36 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    (function (w, d, s, u) {
+      if (w.oaiq) return;
+      var q = function () {
+        q.q.push(arguments);
+      };
+      q.q = [];
+      w.oaiq = q;
+      var js = d.createElement(s);
+      js.async = true;
+      js.src = u;
+      var f = d.getElementsByTagName(s)[0];
+      f.parentNode.insertBefore(js, f);
+    })(window, document, "script", "https://bzrcdn.openai.com/sdk/oaiq.min.js");
+
+    oaiq("init", {
+      pixelId: "6WitTLGVT6yKdjvd1GfbPf",
+      debug: true
+    });
+    oaiq("measure", "page_viewed", {
+      type: "contents",
+      contents: [
+        {
+          id: "portfolio-home",
+          name: "Portfolio Igor Andrade — Destiny Ads",
+          content_type: "page"
+        }
+      ]
+    });
+  </script>
   <title>Igor Andrade | Estratégia de Aquisição, Mídia e IA</title>
   <meta name="description" content="Mais clientes, menos desperdício e crescimento com controle. Estratégia, mídia paga, mensuração e IA com Igor Andrade e Destiny Ads.">
   <meta name="author" content="Igor Andrade">
