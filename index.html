@@ -46,10 +46,10 @@
   <meta name="theme-color" content="#06191e">
   <link rel="canonical" href="https://destinyads.com.br/">
   <link rel="icon" type="image/png" href="favicon.png?v=20260808">
-  <link rel="preload" href="assets/Arboria-Book.otf" as="font" type="font/otf" crossorigin>
-  <link rel="preload" href="assets/Arboria-Bold.otf" as="font" type="font/otf" crossorigin>
-  <link rel="preload" href="assets/igor-palco.jpg" as="image" fetchpriority="high">
-  <link rel="stylesheet" href="styles.css?v=20260808-8">
+  <link rel="preload" href="assets/Arboria-Book.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/Arboria-Black.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/igor-palco-1600.webp" as="image" type="image/webp" imagesrcset="assets/igor-palco-960.webp 960w, assets/igor-palco-1600.webp 1600w" imagesizes="(max-width: 760px) calc(100vw - 48px), (max-width: 1050px) 92vw, min(48vw, 650px)" fetchpriority="high">
+  <link rel="stylesheet" href="styles.css?v=20260808-9">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="pt_BR">
   <meta property="og:url" content="https://destinyads.com.br/">
@@ -143,7 +143,10 @@
           <span class="hero-line hero-line-decision hero-promise-line-four"><i>o anúncio e a venda.</i><b aria-hidden="true"></b></span>
         </h1>
         <figure class="mobile-stage" aria-label="Igor Andrade palestrando em um evento de negócios">
-          <img src="assets/igor-palco.jpg" alt="Igor Andrade palestrando em um evento de negócios" width="2600" height="1463">
+          <picture>
+            <source type="image/webp" srcset="assets/igor-palco-960.webp 960w, assets/igor-palco-1600.webp 1600w" sizes="(max-width: 760px) calc(100vw - 48px), 1px">
+            <img src="assets/igor-palco.jpg" alt="Igor Andrade palestrando em um evento de negócios" width="2600" height="1463" decoding="async" fetchpriority="high">
+          </picture>
           <span class="mobile-stage-scan" aria-hidden="true"></span>
           <span class="mobile-stage-signal" aria-hidden="true"></span>
           <span class="mobile-stage-note mobile-stage-note-a" aria-hidden="true"><span>Estratégia</span><i></i></span>
@@ -164,7 +167,10 @@
       <div class="hero-visual" aria-label="Igor Andrade palestrando">
         <figure class="stage-card" data-tilt>
           <div class="stage-photo">
-            <img src="assets/igor-palco.jpg" alt="Igor Andrade palestrando em um evento de negócios" width="2600" height="1463" fetchpriority="high">
+            <picture>
+              <source type="image/webp" srcset="assets/igor-palco-960.webp 960w, assets/igor-palco-1600.webp 1600w" sizes="(max-width: 1050px) 92vw, min(48vw, 650px)">
+              <img src="assets/igor-palco.jpg" alt="Igor Andrade palestrando em um evento de negócios" width="2600" height="1463" decoding="async" fetchpriority="high">
+            </picture>
           </div>
           <div class="red-line red-line-side" aria-hidden="true"></div>
           <div class="frame-index" aria-hidden="true">01 — 04</div>
