@@ -379,10 +379,11 @@ html{overflow-x:clip}
     bottom:0;
     left:-35%;
     width:35%;
-    height:2px;
-    background:linear-gradient(90deg,transparent,var(--mint),transparent);
-    opacity:0;
-    animation:mobileEdgeScan 5.6s ease-in-out 1.15s infinite;
+    height:3px;
+    background:linear-gradient(90deg,transparent 0%,var(--mint-soft) 32%,var(--white) 50%,var(--mint) 68%,transparent 100%);
+    box-shadow:0 -2px 14px rgba(112,228,209,.72),0 0 22px rgba(9,208,181,.48);
+    opacity:.82;
+    animation:mobileEdgeScan 2.8s cubic-bezier(.45,.05,.55,.95) 1.15s infinite alternate;
     pointer-events:none;
   }
   .mobile-stage-signal{
@@ -438,9 +439,8 @@ html{overflow-x:clip}
   to{transform:scale(1.095) translate3d(-1.25%,1%,0)}
 }
 @keyframes mobileEdgeScan{
-  0%,14%{opacity:0;transform:translate3d(0,0,0)}
-  25%,74%{opacity:.72}
-  86%,100%{opacity:0;transform:translate3d(385%,0,0)}
+  from{opacity:.72;transform:translate3d(0,0,0)}
+  to{opacity:1;transform:translate3d(385%,0,0)}
 }
 
 @media(prefers-reduced-motion:reduce){
