@@ -55,7 +55,7 @@ h1,h2,h3,p{margin-top:0}h1,h2,h3{text-wrap:balance}.hero h1{margin:0 0 34px;font
 .rail-progress span{background:linear-gradient(90deg,var(--red),var(--violet))}
 .about-statement h2 em{color:var(--blue)}
 .instagram-link{border-bottom-color:var(--blue)}
-.cta-section{background:var(--violet)}
+.cta-section{background:var(--white)}
 .cta-circle{background:var(--acid);color:var(--ink);box-shadow:0 25px 65px rgba(6,25,30,.2)}
 .cta-circle i{color:var(--red)}
 [data-reveal]{opacity:1;transform:none}.js [data-reveal]{opacity:0;transform:translateY(45px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}.js [data-reveal].is-visible{opacity:1;transform:none}
@@ -104,8 +104,9 @@ html{overflow-x:clip}
 .case-carousel-controls{display:flex;gap:8px}
 .case-carousel-controls button{display:grid;width:48px;height:48px;padding:0;border:1px solid rgba(16,36,29,.28);border-radius:50%;background:transparent;color:var(--ink);place-items:center;font-size:1.15rem;cursor:pointer;transition:background .25s,color .25s,transform .25s}
 .case-carousel-controls button:hover{background:var(--ink);color:var(--paper);transform:scale(1.05)}
+.case-carousel-controls button:disabled{opacity:.28;cursor:default;transform:none;background:transparent;color:var(--ink)}
 .case-carousel-controls button:focus-visible{outline:2px solid var(--red);outline-offset:3px}
-.portfolio-case-grid{display:flex;gap:16px;overflow-x:auto;padding:8px max(24px,calc((100vw - var(--max))/2)) 4px;scrollbar-width:none;overscroll-behavior-inline:contain;cursor:grab;user-select:none}
+.portfolio-case-grid{display:flex;gap:16px;overflow-x:auto;padding:8px max(24px,calc((100vw - var(--max))/2)) 4px;scroll-behavior:smooth;scroll-snap-type:x proximity;scrollbar-width:none;overscroll-behavior-inline:contain;cursor:grab;user-select:none}
 .portfolio-case-grid::-webkit-scrollbar{display:none}
 .portfolio-case-grid.is-dragging{cursor:grabbing;scroll-behavior:auto}
 .portfolio-case{
@@ -166,22 +167,31 @@ html{overflow-x:clip}
 .section-cta-link{
   display:inline-flex;
   align-items:center;
-  gap:24px;
+  justify-content:center;
+  gap:20px;
   flex:0 0 auto;
-  padding:13px 0;
-  border-bottom:2px solid var(--red);
+  min-height:54px;
+  padding:0 22px;
+  border:1px solid var(--ink);
+  border-radius:100px;
+  background:var(--ink);
+  color:var(--white);
+  box-shadow:0 14px 30px rgba(6,25,30,.12);
   font-size:.72rem;
   font-weight:700;
   letter-spacing:.1em;
   text-decoration:none;
   text-transform:uppercase;
+  transition:background .25s,border-color .25s,color .25s,box-shadow .25s;
 }
 .section-cta-link i{
-  color:var(--red);
+  color:var(--mint);
   font-size:1rem;
   font-style:normal;
   transition:transform .25s;
 }
+.section-cta-link:hover{border-color:var(--red);background:var(--red);color:var(--white);box-shadow:0 18px 38px rgba(255,75,62,.2)}
+.section-cta-link:hover i{color:var(--white)}
 .section-cta-link:hover i{transform:translate(3px,-3px)}
 .cases-cta{
   margin-right:max(24px,calc((100vw - var(--max))/2));
@@ -204,7 +214,10 @@ html{overflow-x:clip}
 .method-cta .section-cta-link{justify-self:start}
 .about-actions{display:flex;flex-wrap:wrap;align-items:center;gap:18px 34px;margin-top:32px}
 .about-actions .instagram-link{margin-top:0}
-.section-cta-link-light{color:var(--white);border-bottom-color:var(--red)}
+.section-cta-link-light{border-color:var(--acid);background:var(--acid);color:var(--ink);box-shadow:0 16px 34px rgba(0,0,0,.18)}
+.section-cta-link-light i{color:var(--red)}
+.section-cta-link-light:hover{border-color:var(--white);background:var(--white);color:var(--ink)}
+.section-cta-link-light:hover i{color:var(--red)}
 
 .faq{background:var(--paper)}
 .faq-heading{max-width:980px}
