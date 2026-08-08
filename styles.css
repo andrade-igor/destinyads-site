@@ -29,6 +29,11 @@ nav a{position:relative;color:rgba(252,251,247,.55);transition:color .25s}nav a:
 .eyebrow{margin:0;color:var(--mint);font-size:.72rem;font-weight:700;letter-spacing:.17em;text-transform:uppercase}.hero-eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:28px;opacity:0}.hero-eyebrow span{display:block;width:30px;height:1px;background:var(--red)}
 h1,h2,h3,p{margin-top:0}h1,h2,h3{text-wrap:balance}.hero h1{margin:0 0 34px;font-size:clamp(3.25rem,6.4vw,6.65rem);font-weight:900;letter-spacing:-.062em;line-height:.82;text-transform:uppercase}
 .hero-line{display:block;overflow:hidden;padding-bottom:.09em}.hero-line i{display:block;font-style:normal;transform:translateY(112%)}.hero-line-accent{color:var(--mint);font-size:1.24em}.hero-line-decision{position:relative;display:flex;align-items:center;color:var(--white)}.hero-line-decision b{display:block;width:0;height:.13em;margin-left:.13em;background:var(--red);transform:skewX(-18deg)}
+.hero h1.hero-promise-title{font-size:clamp(3.1rem,5.25vw,5.5rem);line-height:.87}
+.hero-promise-line-one{font-size:.8em}
+.hero-promise-line-two{font-size:.9em}
+.hero-promise-line-three{font-size:.98em}
+.hero-promise-line-four{font-size:.71em}
 .mobile-stage{display:none}.hero-text{max-width:690px;margin:0 0 36px;color:rgba(252,251,247,.63);font-size:clamp(1rem,1.4vw,1.24rem);line-height:1.6;opacity:0;transform:translateY(16px)}
 .hero-actions{display:flex;align-items:center;gap:30px;opacity:0;transform:translateY(16px)}.button{display:inline-flex;align-items:center;justify-content:center;gap:28px;min-height:58px;padding:0 28px;border-radius:100px;font-size:.78rem;font-weight:700;letter-spacing:.1em;text-decoration:none;text-transform:uppercase}.button-primary{background:var(--mint);color:var(--ink)}
 .text-link{display:inline-flex;align-items:center;gap:20px;color:rgba(252,251,247,.74);font-size:.76rem;font-weight:700;letter-spacing:.09em;text-decoration:none;text-transform:uppercase}.text-link i{font-style:normal;color:var(--red);animation:arrowBounce 1.6s ease-in-out infinite}
@@ -265,6 +270,11 @@ html{overflow-x:clip}
   .hero-copy{display:flex;flex-direction:column}
   .hero-eyebrow{order:1}
   .hero h1{order:2;font-size:clamp(2.9rem,12.4vw,4.4rem)}
+  .hero h1.hero-promise-title{font-size:clamp(2.85rem,12vw,4.15rem)}
+  .hero-promise-line-one{font-size:.77em}
+  .hero-promise-line-two{font-size:.78em}
+  .hero-promise-line-three{font-size:.86em}
+  .hero-promise-line-four{font-size:.61em}
   .hero-text{order:3}
   .hero-actions{order:4}
   .mobile-stage{order:5}
