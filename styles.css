@@ -347,3 +347,74 @@ html{overflow-x:clip}
 @media(prefers-reduced-motion:reduce){
   .ai-core::before,.ai-core::after{animation:none}
 }
+
+/* Hero mobile: a mesma linguagem de movimento da foto no desktop, sem poluir a dobra */
+@media(max-width:760px){
+  .mobile-stage{
+    isolation:isolate;
+    box-shadow:0 24px 54px rgba(0,0,0,.25);
+  }
+  .js .mobile-stage{
+    opacity:0;
+    transform:translateY(20px) scale(.985);
+  }
+  .is-ready .mobile-stage{
+    animation:mobileStageIn 1s cubic-bezier(.19,1,.22,1) .82s both;
+  }
+  .mobile-stage img{
+    position:relative;
+    z-index:0;
+    transform:scale(1.05);
+    animation:mobilePhotoDrift 10s ease-in-out 1.1s infinite alternate;
+    will-change:transform;
+  }
+  .mobile-stage::after{
+    z-index:1;
+    pointer-events:none;
+  }
+  .mobile-stage-scan{
+    position:absolute;
+    z-index:2;
+    top:0;
+    right:0;
+    left:0;
+    height:1px;
+    background:linear-gradient(90deg,transparent,var(--mint),transparent);
+    opacity:.58;
+    animation:scan 5.6s linear 1.15s infinite;
+    pointer-events:none;
+  }
+  .mobile-stage-signal{
+    position:absolute;
+    z-index:3;
+    top:12%;
+    right:10px;
+    width:2px;
+    height:34%;
+    background:var(--red);
+    box-shadow:0 0 18px rgba(255,75,62,.36);
+    transform-origin:top;
+    animation:redTraceY 1.8s cubic-bezier(.19,1,.22,1) 1.05s both;
+    pointer-events:none;
+  }
+}
+
+@keyframes mobileStageIn{
+  to{opacity:1;transform:none}
+}
+@keyframes mobilePhotoDrift{
+  to{transform:scale(1.095) translate3d(-1.25%,1%,0)}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .mobile-stage{
+    opacity:1!important;
+    transform:none!important;
+  }
+  .mobile-stage img{
+    animation:none!important;
+    transform:scale(1.05)!important;
+  }
+  .mobile-stage-scan{display:none}
+  .mobile-stage-signal{animation:none!important;transform:none!important}
+}
