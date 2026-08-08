@@ -7,12 +7,9 @@
     if (!whatsappLink || typeof window.oaiq !== 'function') return;
 
     try {
-      window.oaiq(
-        'measure',
-        'custom',
-        { type: 'custom' },
-        { custom_event_name: 'whatsapp_cta_clicked' }
-      );
+      window.oaiq('measure', 'lead_created', {
+        type: 'customer_action'
+      });
     } catch (_) {
       // Measurement must never interrupt the WhatsApp navigation.
     }
