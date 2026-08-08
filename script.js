@@ -4,14 +4,40 @@
 
   document.addEventListener('click', (event) => {
     const whatsappLink = event.target.closest('a[href^="https://wa.me/"]');
-    if (!whatsappLink || typeof window.oaiq !== 'function') return;
+    if (!whatsappLink) return;
 
-    try {
-      window.oaiq('measure', 'lead_created', {
-        type: 'customer_action'
-      });
-    } catch (_) {
-      // Measurement must never interrupt the WhatsApp navigation.
+    if (typeof window.gtag === 'function') {
+      let leadAlreadyMeasured = false;
+      try {
+        leadAlreadyMeasured = sessionStorage.getItem('ga4_generate_lead_sent') === '1';
+      } catch (_) {
+        // Private browsing can disable session storage; measurement still continues.
+      }
+
+      if (!leadAlreadyMeasured) {
+        try {
+          window.gtag('event', 'generate_lead', {
+            lead_source: 'whatsapp'
+          });
+        } catch (_) {
+          // Measurement must never interrupt the WhatsApp navigation.
+        }
+        try {
+          sessionStorage.setItem('ga4_generate_lead_sent', '1');
+        } catch (_) {
+          // Private browsing can disable session storage.
+        }
+      }
+    }
+
+    if (typeof window.oaiq === 'function') {
+      try {
+        window.oaiq('measure', 'lead_created', {
+          type: 'customer_action'
+        });
+      } catch (_) {
+        // Measurement must never interrupt the WhatsApp navigation.
+      }
     }
   });
 
