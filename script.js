@@ -90,6 +90,9 @@
     let isDragging = false;
     let dragStartX = 0;
     let dragStartScroll = 0;
+    let wheelFrame = 0;
+    let wheelDelta = 0;
+    let wheelStopTimer = 0;
 
     const cardStep = () => {
       const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
@@ -119,10 +122,27 @@
     next.addEventListener('click', () => goToCase(1));
     track.addEventListener('scroll', scheduleCaseUpdate, { passive: true });
     track.addEventListener('wheel', (event) => {
-      const delta = Math.abs(event.deltaX) > Math.abs(event.deltaY) ? event.deltaX : event.deltaY;
-      if (!delta) return;
+      if (event.ctrlKey) return;
+      const rawDelta = Math.abs(event.deltaX) > Math.abs(event.deltaY) ? event.deltaX : event.deltaY;
+      if (!rawDelta) return;
       event.preventDefault();
-      track.scrollBy({ left: delta, behavior: 'auto' });
+      const deltaUnit = event.deltaMode === 1 ? 24 : event.deltaMode === 2 ? track.clientWidth : 1;
+      wheelDelta += rawDelta * deltaUnit;
+      track.classList.add('is-wheeling');
+
+      if (!wheelFrame) {
+        wheelFrame = requestAnimationFrame(() => {
+          track.scrollBy({ left: wheelDelta, behavior: 'auto' });
+          wheelDelta = 0;
+          wheelFrame = 0;
+        });
+      }
+
+      clearTimeout(wheelStopTimer);
+      wheelStopTimer = window.setTimeout(() => {
+        track.classList.remove('is-wheeling');
+        scheduleCaseUpdate();
+      }, 140);
     }, { passive: false });
     track.addEventListener('pointerdown', (event) => {
       if (event.pointerType !== 'mouse' || event.button !== 0) return;
